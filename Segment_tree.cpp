@@ -40,9 +40,9 @@ void init (ll node, ll b, ll e)
         tree[node] = arr[b];
         return;
     }
-    ll left = node*2;
-    ll right = node*2 + 1;
-    ll mid = (b+e)/2;
+    ll left = node<<1;
+    ll right = (node<<1) + 1;
+    ll mid = (b+e)>>1;
     init(left, b, mid);
     init(right, mid+1, e);
     // change
@@ -56,9 +56,9 @@ ll query(ll node, ll b, ll e, ll i, ll j)
         return INFX;
     if(b>=i && e<=j)
         return tree[node];
-    ll left = node*2;
-    ll right = node*2 + 1;
-    ll mid = (b+e)/2;
+    ll left = node<<1;
+    ll right = (node<<1) + 1;
+    ll mid = (b+e)>>1;
     ll p1 = query(left, b, mid, i, j);
     ll p2 = query(right, mid+1, e, i, j);
     return min(p1, p2);
@@ -73,9 +73,9 @@ void update(ll node, ll b, ll e, ll i, ll newvalue)
         tree[node] = newvalue;
         return;
     }
-    ll left = node*2;
-    ll right = node*2 + 1;
-    ll mid = (b+e)/2;
+    ll left = node<<1;
+    ll right = (node<<1) + 1;
+    ll mid = (b+e)>>1;
     update(left, b, mid, i, newvalue);
     update(right, mid+1, e, i, newvalue);
     //changes
